@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VUE js V2 V-IF V-ELSE TEMPLATE | Device 4 Code</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+<body>
+  <div id="main" class="container">
+        
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <template v-if="!message">
+              <h3>Escreva uma sugestão</h3>
+              <p>A equipe de suporte responderá em no máximo 24 horas</p>
+              <p><em>Você também pode usar o twitter para se comunicar</em></p>              
+          </template>          
+          <h3 v-else>Pressione ENTER para enviar</h3>  
+          <textarea v-model="message" class="form-control"></textarea>
+        </div>
+        <div class="col-md-7">
+          <h3>JSON</h3>
+          <pre>
+            {{ $data }}
+          </pre>
+        </div>        
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.2/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+  <script type="text/javascript">
+
+    var urlUsers = 'http://jsonplaceholder.typicode.com/users';
+
+    new Vue({
+      el: '#main',
+      data: {
+        message: ''
+      },
+    });
+  </script>
+</body>
+</html>

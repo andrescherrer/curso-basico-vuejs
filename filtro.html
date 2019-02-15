@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VUE js V2 Filtros | Device 4 Code</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+<body>
+  <div id="main" class="container">
+    
+    <div class="row">
+      <div class="col-sm-4">
+        <h1>VUEjs - Filtros</h1>
+        <button class="btn btn-primary" v-on:click="getUsers" v-if="!lists.length">Listar</button>
+        <ul class="list-group" v-else>
+          <li class="list-group-item">
+            <input type="text" placeholder="Buscar" class="form-control" v-model="name">
+          </li>
+          <li class="list-group-item" v-for="item in searchUser">
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-8">
+          <h1>JSON</h1>
+          <pre>
+            {{ $data | json }}
+          </pre>
+        </div>
+    </div>
+
+  </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.2/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  
+    <script type="text/javascript">      
+
+      new Vue({
+        el: '#main',        
+        data: {
+          lists: [],
+          name: '',
+        },
+        methods: {
+          getUsers: function() {
+            var urlUsers = 'https://jsonplaceholder.typicode.com/users';
+            axios.get(urlUsers).then( response => {
+              this.lists = response.data;
+            });
+          }          
+        },
+        computed: {
+          searchUser: function () {
+            return this.lists.filter((item) => item.name.includes(this.name))
+          }
+        }
+      });
+    </script>
+</body>
+</html>

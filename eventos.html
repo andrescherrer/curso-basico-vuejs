@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VUE js V2 Eventos | Device 4 Code</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+<body>
+  <div id="main" class="container">
+        
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Eventos em VUS js</h2>
+        </div>
+        <div class="col-xs-4">
+          <form v-on:submit.prevent="addName">
+            <div class="input-group">
+              <input type="text" class="form-control" v-model="name">
+              <span class="input-group-btn">
+                <input type="submit" class="btn btn-primary" value="add">
+              </span>
+            </div>
+          </form>
+          <hr>
+          <ul class="list-group">            
+            <li class="list-group-item" v-for="item in people" v-text="item"></li>
+          </ul>
+        </div>
+        <div class="col-xs-4">
+          <button class="btn btn-info" v-on:click="num += 1">
+              {{ num }} <i class="glyphicon glyphicon-thumbs-up"></i>
+          </button>          
+        </div>        
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.2/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+  <script type="text/javascript">
+
+    var urlUsers = 'http://jsonplaceholder.typicode.com/users';
+
+    new Vue({
+      el: '#main',
+      data: {
+        people: ['Roger', 'André', 'Eduardo', 'Ricardo'],
+        name: '',
+        num: 0,
+      },
+      methods: {
+        addName: function() {
+          this.people.push(this.name);
+          this.name = '';
+        }
+      },
+      
+    });
+  </script>
+</body>
+</html>

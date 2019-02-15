@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VUE js V2 Listas | Device 4 Code</title>
+</head>
+<body>
+  
+  <div id="main">
+    <ul>
+      <li v-for="item in people" v-text="item"></li>
+    </ul>
+    <input type="text" v-model="name" v-on:keyup.enter="addName">
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.2/vue.js"></script>
+  
+  <script type="text/javascript">
+    new Vue({
+      el: '#main',
+      data: {
+        people: ['Roger', 'André', 'Eduardo', 'Ricardo']
+      },
+      methods: {
+        addName: function() {
+          this.people.push(this.name);
+          this.name = '';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
